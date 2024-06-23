@@ -5,7 +5,7 @@ import { PrismaClient } from '@prisma/client';
 
 @Injectable()
 export class ProductsService extends PrismaClient implements OnModuleInit {
-  private readonly logger  = new Logger( `ProductService`);
+  private readonly logger = new Logger(`ProductService`);
 
   onModuleInit() {
     this.$connect();
@@ -13,7 +13,9 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
   }
 
   create(createProductDto: CreateProductDto) {
-    return createProductDto;
+    return this.product.create({
+      data: createProductDto,
+    });
   }
 
   findAll() {
